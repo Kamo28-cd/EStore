@@ -1,0 +1,658 @@
+<?php
+include('./classes/DB.php');
+include('./classes/Login.php');
+if (Login::isLoggedIn()) {
+	$userid = Login::isLoggedIn();
+	} else {
+		die('Not Logged In');
+		}
+		
+$messages = DB::query('SELECT messages.*, users.username, users.id AS userid FROM messages, users WHERE users.id = messages.sender AND (sender = :sender OR receiver = :receiver)',array(':receiver'=>$userid, ':sender'=>$userid));
+
+
+
+		
+?>
+
+
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Academy</title>
+<link href="css/ratchet.min.css" rel="stylesheet" type="text/css">
+<link href="css/ownstyle.css" rel="stylesheet" type="text/css">
+<link href="css/icons.css" rel="stylesheet" type="text/css">
+<link href="css/w3.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/clndr.css" type="text/css" />
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/j-forms.css" rel="stylesheet" type="text/css">
+<link href="css/popup-box.css" rel="stylesheet" type="text/css">
+<link href="css/mymodal.css" rel="stylesheet" type="text/css">
+<!--web-fonts-->
+<link href="//fonts.googleapis.com/css?family=Romanesco" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Roboto:400,500,100,100italic,300,300italic,500italic,700,700italic,900,900italic,400italic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/moment.js"></script>
+
+  <script type="text/javascript">
+	
+    	function openNav() {document.getElementById("mySidenav").style.width = "100%";}
+		
+		function closeNav() {document.getElementById("mySidenav").style.width = "0";}
+		
+		function openNav2() {document.getElementById("mySidenav2").style.width = "350px";}
+		
+		function closeNav2() {document.getElementById("mySidenav2").style.width = "0";}
+    </script>     
+      
+
+
+
+			<!-- pop-up-box -->
+<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<!--//pop-up-box -->
+<meta charset="utf-8">
+<title>Messages</title>
+</head>
+
+<body style="background-color: #fff !important;">
+<script type="text/javascript">   
+     function addmyClass() {
+				<!--$('#msgbody'+msgID).addClass('msgread');
+				window.parent.$('#small-dialog-msg').show();
+				//window.parent.$('#small-dialog-msg').fadeIn('slow');
+				var effects = 'animated slideInUp';
+	  			var effectsEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
+	  
+	  
+		  		window.parent.$('#small-dialog-msg').addClass(effects).one(effectsEnd, function(){
+			  	window.parent.$('#small-dialog-msg').removeClass(effects);});
+				window.parent.$('mymodal-bg').fadeIn('slow');
+				mod = "modal bg should be on";
+			}
+      </script>
+<!--page loader start -->
+			<div class="loader">
+				<img src="img_loading/loading.gif" alt="loading..."/>
+		
+			</div>	
+
+<!--page loader end -->
+<div class="content2" style="max-height:650px; margin-top: -45px; background-color: transparent !important; border-top: 1px solid #999;">
+<div class="" style="">
+<!-- search box start-->
+        <form class="">
+		
+		<div class="msgsearchbox">
+			
+        		<input class="messages-input sbox placeholder-pos" rows="1" cols="30" id="pop-input"  placeholder="Search User...">
+			<i class="messages-search-icon icon icon-sli-magnifier"></i>
+
+		</div>
+	</form>
+        <ul id="pop-auto" class="search-list autocomplete" style="z-index:2000">
+        	
+        
+        </ul>
+        
+        
+        <!-- search box end-->
+        
+ </div>
+ <div id="searchclose" style="height:90%; bottom:0px;">
+<ul class="table-view" id="users">
+
+    		
+</ul>
+<div id="usermsg">
+
+</div>
+<div class="msg-block" style="" id="searchclose">
+<div class="center s-12 round-edges msg-inner-block" id="small-dialog-msg" style="display: none; height:98% !important;max-height: 500px;top: 45px !important;z-index:1000 !important;">
+<div class="cm-header-bg w3-padding-8 round-top-edges text-light-blue" id="userheader">
+
+
+</div>
+<p class="pull-right text-light-blue close-btn-pos2" id="close-btn-msg">x</p>
+<div class="msg-style" style="height:100%;max-height: 375px;">
+<ul>
+<br />
+<div class="" id="m">
+<h4>Write a new message</h4>
+</div>
+</ul>
+</div>
+
+<div class="" style="bottom: 0px !important; position: absolute;">
+<form>
+<div >
+<textarea style="margin-bottom:12px !important" id="messagecontent" rows="2" cols="30" type="text" placeholder="Reply..." name="message" class="round-edges cm-input-pad maxwidth3 l-8 m-8 s-8"></textarea>
+<button class="btn-clear s-3 l-3 m-3 w3-right" id="sendmessage" type="button"><div class="badge2">Send</div></button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    	
+    
+        <!--Profile content end-->
+        
+       
+
+</div>
+
+<div id="mymsgmodal-bg" class="bg-mymodal" style="display:none">
+
+</div>
+
+			<script type="text/javascript">
+
+			
+			
+			SENDER = window.location.hash.split('#')[1];
+			USERNAME = "";
+			
+			function getUsername() {
+				$.ajax({
+						
+					type:"GET",
+					cache:false,
+					url:"api/users",
+					processData:false,
+					contentType:"application/json",
+					data: '',
+					success: function(r) {
+							USERNAME = r;
+							}
+						
+						})
+				
+				}
+				
+					var USERID;
+				$.ajax({
+						
+					type:"GET",
+					cache:false,
+					url:"api/userid",
+					processData:false,
+					contentType:"application/json",
+					data: '',
+					success: function(r) {
+							USERID = r;
+							}
+						
+						});
+				$.ajax({
+						
+					type:"GET",
+					cache:false,
+					url:"api/userprof",
+					processData:false,
+					contentType:"application/json",
+					data: '',
+					success: function(r) {
+							r = JSON.parse(r)
+							for (var i = 0; i < r.length; i++) {
+								$('#profimg').html('<img class="profileimage pull-left" src="'+r[i].profileimg+'" alt=""/>')
+								
+								$('#mySidenav').html('<div class="content"><div class="settingbackground"><br><div class="pro-img-position"><img class="profileimage2 img-position tab-item pull-left" src="'+r[i].profileimg+'" alt=""/></div><br><div class="name-width mypull-mid"><h4 class="text-light-blue textitalics padding profname-deco">'+r[i].username+'</h4></div></div><a href="javascript:void(0)" class="closebtn" onClick="closeNav()"><i class="icon-chevron_left icon icon2x"></i></a><div class="prof-content"><div class="move-width"><h4 class="mytext-right text-italics my-text-col-grey">Profile</h4><div><i class="icon-globe"></i><a href="#" class="">Name</a></div><div><i class="icon-discussion"></i><a href="#" class="inline-msg">Bio</a></div><div><i class="icon-letter"></i><a href="#" class="">Motivation</a></div><div><i class="icon-letter"></i><a href="#" class="">Skills & Strengths</a></div><div><i class="icon-signout"></i><a href="#" class="no-margin">Logout</a></div></div><div class="move-width"><h4 class="mytext-right text-italics my-text-col-grey">Documentation</h4><div><i class="icon-attachment"></i><!-- the a class with document names is for viewing the document in question, so create a pop up allowing one to view it with their pdf viewer--><a href="#" class="">Identity Document</a><div class="btn-pos"><a class="view-btn"><span class="badge2"><i class="icon-download icon-col"></i></span></a><a class="delete-btn"><span class="badge2"><i class="icon-trash_can icon-col"></i></span></a></div></div><div><i class="icon-attachment"></i><a href="#" class="inline-msg">Proof of Registration</a><div class="btn-pos"><a class="view-btn"><span class="badge2"><i class="icon-download icon-col"></i></span></a><a class="delete-btn"><span class="badge2"><i class="icon-trash_can icon-col"></i></span></a></div></div><div><i class="icon-attachment"></i><a href="#" class="">Matric Certificate</a><div class="btn-pos"><a class="view-btn"><span class="badge2"><i class="icon-download icon-col"></i></span></a><a class="delete-btn"><span class="badge2"><i class="icon-trash_can icon-col"></i></span></a></div></div><div><i class="icon-attachment"></i><a href="#" class="no-margin">Academic Record</a><div class="btn-pos"><a class="view-btn"><span class="badge2"><i class="icon-download icon-col"></i></span></a><a class="delete-btn"><span class="badge2"><i class="icon-trash_can icon-col"></i></span></a></div></div></div><div class="move-width"><h4 class="mytext-right text-italics my-text-col-grey">Education</h4><div class="block-pos"><div class="w-half inst-pos"><h6 class="mytext-left text-italics my-text-col-grey">Randfontein High School</h6></div><div class="w-half year-pos"><h6 class="mytext-right text-italics my-text-col-grey">2010</h6></div></div><div><i class="icon-sli-graduation"></i><a href="#" class="">Mathematics</a><span class="mytext-right span-bg my-text-col-grey">85%</span></div><div><i class="icon-sli-graduation"></i><a href="#" class="inline-msg">Physics</a><span class="mytext-right span-bg my-text-col-grey">77%</span></div><div><i class="icon-sli-graduation"></i><a href="#" class="">Life Sciences</a><span class="mytext-right span-bg  my-text-col-grey">75%</span></div><div><i class="icon-sli-graduation"></i><a href="#" class="no-margin">Accounting</a><span class="mytext-right span-bg my-text-col-grey">71%</span></div></div><div class="move-width"><h4 class="mytext-right text-italics my-text-col-grey">Work Experience</h4><div class="block-pos"><div class="w-half inst-pos"><h6 class="mytext-left text-italics my-text-col-grey">Currently Employed at: Brand Soldiers</h6></div><div class="w-half year-pos"><h6 class="mytext-right text-italics my-text-col-grey">2014-present</h6></div></div><div><i class="icon-paperplane"></i><a href="#" class="">Brand Soldiers</a></div><div><i class="icon-paperplane"></i><a href="#" class="">Unlock Your Brain Tutors</a></div><div><i class="icon-paperplane"></i><a href="#" class="">Samsung</a></div><div><i class="icon-paperplane"></i><a href="#" class="no-margin">Vodacom</a></div></div><div class="move-width"><h4 class="mytext-right text-italics my-text-col-grey">Achievements</h4><div><i class="icon-sli-trophy"></i><a href="#" class="">Headboy</a></div><div><i class="icon-sli-trophy"></i><a href="#" class="inline-msg">Motivational Leader</a></div><div><i class="icon-sli-trophy"></i><a href="#" class="">Developing application</a></div><div><i class="icon-sli-trophy"></i><a href="#" class="no-margin">Building a remote controlled cart</a></div></div></div></div>')
+								}
+							}
+						
+						});		
+				
+				
+				$(document).ready(function() {
+				$(document).ready(function() {
+				window.parent.$('#close-btn-msg').click(function() {
+				
+				window.parent.$('#small-dialog-msg').fadeOut('slow');
+				window.parent.$('#mymodal-bg').fadeOut('slow');
+				//$('#mymodal-bg').fadeOut('slow');
+				//location.reload()
+				
+				});
+				$('#searchclose2').click(function() {
+				
+				$('.autocomplete').hide();
+				$('.autocomplete').html("")
+				
+				});
+				$('#searchclose').click(function() {
+				$('.autocomplete').hide();
+				$('.autocomplete').html("")	
+					});
+				$('#pop-input').click(function() {
+				$('.autocomplete').show();	
+					});
+				function updateScroll() {
+					var element = window.parent.document.querySelector(".msg-style");
+					element.scrollTop = element.scrollHeight;
+				}
+				$(window).on('hashchange', function(){
+						
+						window.parent.$('#small-dialog-msg').show();
+						//window.parent.$('#small-dialog-msg').fadeIn('slow');
+						var effects = 'animated slideInUp';
+	  					var effectsEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
+	  
+	  
+		  				window.parent.$('#small-dialog-msg').addClass(effects).one(effectsEnd, function(){
+			  			window.parent.$('#small-dialog-msg').removeClass(effects);});
+
+						window.parent.$('#mymodal-bg').fadeIn('slow');
+						//$('#mymsgmodal-bg').fadeIn('slow');
+						mylocal = window.location.hash.split('#')[1];
+						//mylocal.toString();
+						
+						
+						
+						})
+					
+					window.parent.$('#sendmessage').click(function() {
+						SENDER = window.location.hash.split('#')[1];
+						$.ajax({
+							 
+							 type: "POST",
+							 cache:false,
+							 url: "api/message",
+							 processData: false,
+							 contentType:"application/json",
+							 data: '{"body": "'+ window.parent.$("#messagecontent").val()+'", "receiver": "'+SENDER+'"}',
+							 success: function(r) {
+									console.log(window.parent.$("#messagecontent").val())
+								 	location.reload()
+									updateScroll()
+							 },
+							 error: function(r) {
+								 
+								 }
+						})
+						})
+				$('.sbox').keyup(function() {
+				$('.autocomplete').html("")
+				$.ajax({
+							 
+							 type: "GET",
+							 cache:false,
+							 url: "api/msgsearch?query=" +$(this).val(),
+							 processData: false,
+							 contentType:"application/json",
+							 data: '',
+							 success: function(r) {
+								 	r = JSON.parse(r)
+									for (var i = 0; i < r.length; i++) {
+											console.log(r[i].username)
+											
+												$('.autocomplete').append( '<li onClick="addmyClass()" class="search-li" id="user'+r[i].id+'" data-id='+r[i].id+'><img class="profileimage" src="'+r[i].profileimg+'" alt=""/><p class="sboximg" style="">'+r[i].username+'</p></li>')
+											
+											
+											$('#user'+r[i].id+'').click(function() {
+										//$('mymodal-bg').show();
+										window.parent.$('#mymodal-bg').fadeIn('slow');
+										//$('#mymsgmodal-bg').fadeIn('slow');
+										mod = "modal bg should be on";
+										window.location = 'messages.php#' + $(this).attr('data-id')
+										window.parent.$('#m').html('<p class="text-italics" style="font-size: 14px !important; padding-top: 0px; margin-top: 10px !important; text-indent: 20px;">Add new message...</p>')
+										window.parent.$('#userheader').html('<h5 class="padding-navicon">New Message</h5>')
+										$('.autocomplete').hide();
+										
+														
+										$.ajax({
+						
+						type:"GET",
+						url:"api/messages?sender="+$(this).attr('data-id'),
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(q) {
+							q = JSON.parse(q)
+							$.ajax({
+						
+								type:"GET",
+								cache:false,
+								url:"api/users",
+								processData:false,
+								contentType:"application/json",
+								data: '',
+								success: function(u) {
+										USERNAME = u;
+										
+										for (var j = 0; j < q.length; j++) {
+											if (q[j].Sender == USERNAME) {
+												window.parent.$('#userheader').html('<h5 class="padding-navicon">'+q[j].Receiver+'</h5>')
+											} else {
+												window.parent.$('#userheader').html('<h5 class="padding-navicon">'+q[j].Sender+'</h5>')
+												}
+												
+										
+										
+								if (q[j].Sender == USERNAME) {
+									window.parent.$('#m').append('<div class=" s-12 w3-padding-4"></div><li class="table-view-cell message-from-me"><div class="media-body"><div class="msg-bubble"><p class="fontsize10 text-italics text-lightened">'+moment(q[j].msg_date).fromNow()+'</p></div><p class="text-lightened">'+q[j].body+'</p></div></li>')
+									mystr = "yes sender is username";
+									
+									} else {
+										window.parent.$('#m').append('<div class=" s-12 w3-padding-4"></div><li class="table-view-cell message-from-other"><div class="media-body"><div class="msg-bubble"><p class="fontsize10 text-italics">'+moment(q[j].msg_date).fromNow()+'</p></div><p class="text-darkened-blue">'+q[j].body+'</p></div></li>')
+										mystr = "no sender is not username";
+										}
+								}
+							}
+						
+						})
+							window.parent.$('#mymodal-bg').fadeIn('slow');
+							//$('#mymsgmodal-bg').fadeIn('slow');
+							window.parent.$('#small-dialog-msg').show();
+							//window.parent.$('#small-dialog-msg').fadeIn('slow');
+							var effects = 'animated slideInUp';
+	  						var effectsEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
+	  
+	  
+		  					window.parent.$('#small-dialog-msg').addClass(effects).one(effectsEnd, function(){
+			  				window.parent.$('#small-dialog-msg').removeClass(effects); });
+							},
+						error: function(q) {
+							console.log(q)
+							}
+						
+						})
+						$.ajax({
+							 
+							 type: "POST",
+							 url: "api/musers2",
+							 processData: false,
+							 contentType:"application/json",
+							 data: '{"sentby": "'+SENDER+'"}',
+							 success: function(r) {
+								 
+																				
+								 //console.log(r)
+								 WORKED = "yes";
+								 window.parent.$('#mymodal-bg').fadeIn('slow');
+								 
+								 //$('mymodal-bg').show();
+								 mod = "modal bg should be on";
+								
+								 
+								 
+							},
+							 error: function(r) {
+								 	console.log(r)
+									WORKED = "no but went into error"
+								 }
+						})
+											
+										})
+									}
+							 },
+							 error: function(r) {
+								 	console.log(r)
+							 }
+				})
+				
+				
+			})
+					
+					var unreadfrmme = 0;
+					
+						
+					$.ajax({
+						
+						type:"GET",
+						cache:false,
+						url:"api/musers",
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(r) {
+							r = JSON.parse(r)
+							
+								
+								
+								$.ajax({
+							 
+							 type: "GET",
+							 cache:false,
+							 url: "api/musers3",
+							 processData: false,
+							 contentType:"application/json",
+							 data: '',
+							 success: function(message) {
+								 message = JSON.parse(message)
+								 for (var i = 0; i<r.length; i++) {
+									
+									 	
+										$.ajax({
+						
+						type:"GET",
+						cache:false,
+						url:"api/messages3?sender="+r[i].id,
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(w) {
+							w = JSON.parse(w)
+							for (var j = 0; j < w.length; j++) {
+							if (w[j].Sender == USERNAME) {
+										if (w[j].read == 0) {
+										unreadfrmme +=1;
+										}
+								} else {
+									if (w[j].read == 0) {
+										
+										seeme = "WORKED"
+										
+										}
+									
+									}
+							}
+						}
+										})
+										
+										
+										$('#users').append('<li class="table-view-cell msgunset-border" onClick="addmyClass()" id="user'+r[i].id+'" data-id='+r[i].id+'><span class="badge-msg" id="unreadnum'+r[i].id+'"></span><img class="profileimage pull-left" src="'+r[i].profileimg+'" alt=""/><div class="media-body"><h4 class="" style="margin-left:10px;" id="msgbody'+r[i].id+'">'+r[i].username+'</h4><div id="lastmsg'+r[i].id+'"></div><div></div></div></li>')
+									
+										if (r[i].id == USERID) {
+											$('#user'+r[i].id).addClass('msgdisplayoff');
+											}
+											
+										
+											
+						
+										
+						$.ajax({
+						
+						type:"GET",
+						cache:false,
+						url:"api/messages2?sender="+$('#user'+r[i].id+'').attr('data-id'),
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(q) {
+							q = JSON.parse(q)
+										
+										
+										
+										$.each(q, function(j) {
+
+										if ((q[j].receiver == 1) && (q[j].receiver == 3)) {
+												console.log('receiver is'+q[j].receiver);
+												console.log('sender is'+q[j].sender);
+												console.log('body is '+q[j].body);
+										}	
+										if ((q[j].receiver == USERID) ||(q[j].sender == USERID)) {
+										//if im the one that sent the message or im the one that receives the message
+												
+											$('#lastmsg'+q[j].receiver+'').html('<p class="padding-navicon">'+q[j].body+'</p>');
+											$('#unreadnum'+q[j].receiver+'').html(''+moment(q[j].msg_date).fromNow()+'');
+											$('#lastmsg'+q[j].sender+'').html('<p class="padding-navicon">'+q[j].body+'</p>');
+											$('#unreadnum'+q[j].sender+'').html(''+moment(q[j].msg_date).fromNow()+'');
+											if (q[j].receiver != USERID) {
+												$('#lastmsg'+q[j].sender+'').html('<p class="padding-navicon">'+q[j].body+'</p>');
+												$('#unreadnum'+q[j].sender+'').html(''+moment(q[j].msg_date).fromNow()+'');
+												amI = "more than you bargained for";
+											}
+										qj = q[j].body
+										Wk = "Worked"
+										
+										if (q[j].read == 0) {
+											$('#msgbody'+q[j].receiver).addClass('msgdefault');
+											$('#user'+q[j].receiver).addClass('msgunread');
+											
+											}	
+										} else if (q[j].sender == USERID) {
+											console.log(q[j].sender)
+											//if im not the one that receives the message but i am the one that sent the message
+											$('#lastmsg'+q[j].receiver+'').html('<p class="padding-navicon">'+q[j].body+'</p>');
+											$('#unreadnum'+q[j].receiver+'').html(''+moment(q[j].msg_date).fromNow()+'');
+										}
+										})
+										
+								
+							
+						}
+										})
+									
+									$('#user'+r[i].id+'').click(function () {
+										
+										window.location = 'messages#' + $(this).attr('data-id')
+										window.parent.$('#m').html("")
+										$.ajax({
+						
+						type:"GET",
+						cache:false,
+						url:"api/messages?sender="+$(this).attr('data-id'),
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(q) {
+							q = JSON.parse(q)
+							$.ajax({
+						
+								type:"GET",
+								cache:false,
+								url:"api/users",
+								processData:false,
+								contentType:"application/json",
+								data: '',
+								success: function(u) {
+										USERNAME = u;
+										
+										for (var j = 0; j < q.length; j++) {
+											if (q[j].Sender == USERNAME) {
+										window.parent.$('#userheader').html('<h5 class="padding-navicon">'+q[j].Receiver+'</h5>')
+											} else {
+												window.parent.$('#userheader').html('<h5 class="padding-navicon">'+q[j].Sender+'</h5>')
+												}
+										
+										
+								if (q[j].Sender == USERNAME) {
+									window.parent.$('#m').append('<div class=" s-12 w3-padding-4"></div><li class="table-view-cell message-from-me"><div class="media-body"><div class="msg-bubble"><p class="fontsize10 text-italics text-lightened">'+moment(q[j].msg_date).fromNow()+'</p></div><p class="text-lightened">'+q[j].body+'</p></div></li>')
+									mystr = "yes sender is username";
+									
+									} else {
+										window.parent.$('#m').append('<div class=" s-12 w3-padding-4"></div><li class="table-view-cell message-from-other"><div class="media-body"><div class="msg-bubble"><p class="fontsize10 text-italics">'+moment(q[j].msg_date).fromNow()+'</p></div><p class="text-darkened-blue">'+q[j].body+'</p></div></li>')
+										mystr = "no sender is not username";
+										}
+								}
+							}
+						
+						})
+							
+							},
+						error: function(q) {
+							console.log(q)
+							}
+						
+						})
+						parent.updateScroll();
+											
+											
+										    
+                                   		
+									WORKED = "hasnt started yet"
+									$.ajax({
+							 
+							 type: "POST",
+							 cache:false,
+							 url: "api/musers2",
+							 processData: false,
+							 contentType:"application/json",
+							 data: '{"sentby": "'+SENDER+'"}',
+							 success: function(r) {
+								 
+																				
+								//console.log(r)
+								 WORKED = "yes"
+								 
+								
+								 
+								 
+							},
+							 error: function(r) {
+								 	console.log(r)
+									WORKED = "no but went into error"
+								 }
+						})
+											
+											
+										})
+								 }
+							 }
+								})	
+									
+									
+									
+									
+									
+								
+						/*<!--$.ajax({
+						
+						type:"GET",
+						cache:false,
+						url:"api/messages2?sender="+SENDER,
+						processData:false,
+						contentType:"application/json",
+						data: '',
+						success: function(r) {
+							var msg = JSON.parse(r)
+							$.each(msg, function(index) {
+							$('#msgbody'+i+'').html('<p>'+msg[index].MessageBody+'</p>')	
+							
+							})
+							
+						}
+						})-->*/
+						}
+						
+						
+					})
+					
+					
+					
+				})
+			});
+			</script>
+</body>
+<script>
+			//Tab Second loader Start
+				
+				function tab_loaderSecond() {
+					document.addEventListener("DOMContentLoaded", function() {
+					
+					setTimeout(function(){
+						$(".loader").removeClass("hidden");
+						$(".loader").addClass("hidden");
+					},1500)
+					})
+				}
+				tab_loaderSecond()
+			//Tab Second loader End 
+</script>
+</html>

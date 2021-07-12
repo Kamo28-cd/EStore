@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html class="market" style="height:100%">
+<head>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Buble Market</title>
+<link href="assets/css/ratchet.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/ownstyle.css" rel="stylesheet" type="text/css">
+<link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+<link href="assets/css/w3.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="assets/css/clndr.css" type="text/css" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+<link href="assets/css/j-forms.css" rel="stylesheet" type="text/css">
+<link href="assets/css/animate.css" rel="stylesheet" type="text/css">
+
+<link href="assets/css/croppie.css" rel="stylesheet" type="text/css">
+<link href="assets/css/mymodal.css" rel="stylesheet" type="text/css">
+<link href="assets/css/popup-box.css" rel="stylesheet" type="text/css">
+<link href="assets/fontawesome/css/all.css" rel="stylesheet" type="text/css">
+<!--web-fonts-->
+<!--<link href="//fonts.googleapis.com/css?family=Romanesco" rel="stylesheet" type="text/css">-->
+<!--<link href="//fonts.googleapis.com/css?family=Roboto:400,500,100,100italic,300,300italic,500italic,700,700italic,900,900italic,400italic" rel="stylesheet" type="text/css">-->
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/croppie.js"></script>
+<script type="text/javascript" src="assets/js/mymodal.js"></script>
+<script type="text/javascript" src="assets/js/moment.js"></script>
+
+
+<script src="assets/js/underscore-min.js"></script>
+<script src= "assets/js/moment-2.2.1.js"></script>
+<script src="assets/js/clndr.js"></script>
+<script src="assets/js/site.js"></script>
+
+
+
+			<!-- pop-up-box -->
+<script src="assets/js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<!--//pop-up-box -->
+			<script>
+				$(document).ready(function() {
+					$('.popup-with-zoom-anim').magnificPopup({
+						type: 'inline',
+						fixedContentPos: false,
+						fixedBgPos: true,
+						overflowY: 'auto',
+						closeBtnInside: true,
+						preloader: false,
+						midClick: true,
+						removalDelay: 300,
+						mainClass: 'my-mfp-zoom-in'
+					});														
+				});
+			</script>
+
+
+<script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!---Google Analytics Designmaz.net-->
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-35751449-15', 'auto');ga('send', 'pageview');</script>
+</head>
+
+	
+<body style="font-family:Helvetica !important;margin-top:unset !important">
+	<script src="assets/js/jssor.slider-21.1.6.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	
+
+        jssor_1_slider_init = function() {
+            
+            var jssor_1_options = {
+              $AutoPlay: false,
+			  $ArrowKeyNavigation:0, //stops left/right arrows from moving sliders
+			  $Loop: false,//stops sliders from looping
+			  $DragOrientation:0, //this disables drag on the sliders to enable change to 1, so only clicking on the tabs will change sliders
+              $ThumbnailNavigatorOptions: {
+                $Class: $JssorThumbnailNavigator$,
+                $Cols: 4,
+                $Align: 300,
+                $NoDrag: true
+              }
+            };
+            
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            
+            //responsive code end
+        };
+        
+    </script>
+
+    <script type="text/javascript">
+	
+	function copy() {
+		var copyText = document.querySelector("#copy");
+		copyText.select();
+		document.execCommand("copy");
+	}
+	//document.querySelector("#copy").addEventListener("click", copy)
+	function show_report() {
+		document.getElementById("reportother").style.display = "";
+		document.getElementById("reportother").style.opacity = "1";
+		document.getElementById("reportother").style.transition = "0.5s";
+		document.getElementById("reportother").style.height = "100%";
+		document.getElementById("reportother").style.position = "relative";
+	}
+	
+    		function openNav() {document.getElementById("mySidenav").style.width = "100%";}
+		
+		function closeNav() {document.getElementById("mySidenav").style.width = "0";}
+		
+		function openNav2() {document.getElementById("mySidenav2").style.width = "350px";}
+		
+		function closeNav2() {document.getElementById("mySidenav2").style.width = "0";}
+		
+		function openNavedit() {
+		
+		document.getElementById("editprofilecv").style.width = "90%";
+		$('#mymodal-bg').fadeIn('slow');
+		}
+		
+		function closeNavedit() {document.getElementById("editprofilecv").style.width = "0";
+		$('#mymodal-bg').fadeOut('slow');
+		}
+
+		function openSort() {
+		
+		document.getElementById("sortTab").style.width = "70%";
+		$('#mymodal-bg').fadeIn('slow');
+		}
+		
+		function closeSort() {document.getElementById("sortTab").style.width = "0";
+		$('#mymodal-bg').fadeOut('slow');
+		}
+    </script>
+    <script>
+    function tab_loader(tabid) {
+		div_load = document.getElementById(tabid).firstElementChild;
+		div_load.addEventListener("load", function() {
+			const loader= document.querySelectorAll(".loader");
+			loader.forEach((load) =>{
+				if ((!load.classList.contains("hidden")) && (!load.classList.contains("hidden_div"))) {
+					load.className += " hidden_div"; //similar to add class so it becomes loader hidden
+				}
+			});
+		});
+		const loader= document.querySelectorAll(".loader");
+		loader.forEach((load) =>{
+				if ((load.classList.contains("hidden")) || (load.classList.contains("hidden_div"))) {
+					load.classList.remove("hidden_div"); 
+					//load.classList.remove("hidden"); 
+				}
+		});
+    }
+	//scroll to top function start
+	function toTheTop() {
+		element  = document.getElementById('pop3');
+		if (element.scrollTop > 20) {
+			$('#pop3').animate({scrollTop: 0},'slow');
+			
+		}
+	}
+				
+	//scroll to top function end
+	
+    function load_messages() {
+				
+				document.getElementById('msg-content').innerHTML='<object type="text/html" data="messages" style="width:100%; height:100%; height:-moz-available; height: -webkit-fill-available; height:fill-available;"></object>';
+				id = "msg-content";
+				tab_loader(id)
+	}
+				
+    function load_notifications() {
+				document.getElementById('notify-content').innerHTML='<object type="text/html" data="notify" style="width:100%; height:100%; height:-moz-available; height: -webkit-fill-available; height:fill-available;"></object>';
+				id = "notify-content";
+				tab_loader(id)
+				$.ajax({
+						
+								type:"POST",
+								cache:false,
+								url:"api/viewednotif",
+								processData:false,
+								contentType:"application/json",
+								data: '',
+								success: function(r) {
+									var response = JSON.parse(r)
+									$('[data-notifid]').html('<div class="notification" id="notify-num" style="display:none !important;" >'+response.Notifications+'</div>');
+									
+
+								},
+							 	error: function(r) {
+										console.log(r)
+					 			}
+						
+								});
+				}
+// back button start
+    function goBack() {
+        window.history.back()
+    }
+// back button end
+	//relocation function start
+
+	function newLocation(loc) {
+					if (loc == "profile") {
+						window.location.href = 'profile?username='+COMMENTERNAME+'';
+					} else if (loc == "logout") {
+						window.location.href = 'signout';
+					} else if (loc =="search") {
+						setTimeout(function() {window.location.href = 'search';},1000);
+					}
+				}
+
+	// relocation function end
+
+	// relocate to products start
+		function gotoProduct(storename) {
+			window.location.href = 'products?storename='+storename+'';
+		}
+	// relocate to products end
+    </script>
+
+	<script type="text/javascript">
+		window.addEventListener("load", function () {
+			const loader= document.querySelector(".loader");
+			loader.className += " hidden"; //similar to add class so it becomes loader hidden
+			const loaderSkeleton= document.querySelector(".loader-skeleton");
+			setTimeout(function(){
+				//loaderSkeleton.className += " hidden";
+			},3000);
+		})
+		
+	</script>
+    
+	<header class="bar bar-nav" id="navbar" style="z-index:100 !important;padding-left:0px; padding-right:0px;transition:0.5s;height:61px !important; background:#fff">
+        <div class="my-header" style="background:#fff">
+        
+ 
+
+	<div class="grid-nav pc-search" style="">
+		<h1>Buble Market</h1>
+		<!-- search box start-->
+        	<div class="shopsearchbox searchfilter" id="shopsearchbox" style="">
+			
+        		<input class="explore-input sbox placeholder-pos pop-input" rows="1" cols="30" id="pop-input1"  placeholder="Search...">
+                	<ul id="pop-auto" class="explore-search-list autocomplete" style="z-index:2000;margin-left:unset !important;top: 40px;">
+        	
+        
+                	</ul>
+			<i class="messages-search-icon icon icon-sli-magnifier" id="search-btn" style="color:#24a2ef !important"></i>
+			<i class="messages-search-icon icon icon-sli-equalizer" id="filter-btn"  style="color:#24a2ef !important;display:inline-block"></i>
+
+		</div>
+		<i class="messages-search-icon icon icon-sli-directions" id="sort-btn" onClick="openSort()"  style="color:#24a2ef !important;display:inline-flex"></i>
+		<i class="handbag-pos icon icon-sli-handbag mag-pos text-light-blue" onClick="openNavedit()" style="display:inline-flex;">
+			<div class="num-cart-items" id="notify-num" style="display:block" >0</div>
+		</i>
+		
+	</div>
+	
+	<div class="mobile-search" style="">
+		<!-- search box start-->
+        	<div class="shopsearchbox searchfilter" id="shopsearchbox" style="">
+			
+        		<input class="explore-input sbox placeholder-pos pop-input" rows="1" cols="30" id="pop-input2"  placeholder="Search...">
+                	<ul id="pop-auto" class="explore-search-list autocomplete" style="z-index:2000;right: 50px;top: 40px;">
+        	
+        
+                	</ul>
+			<i class="messages-search-icon icon icon-sli-magnifier" id="search-btn" style="color:#24a2ef !important"></i>
+			<i class="messages-search-icon icon icon-sli-equalizer" id="filter-btn2"  style="color:#24a2ef !important;display:inline-block"></i>
+
+		</div>
+	</div>
+        <div class="search-filter-main" id="navbar2nd" style="width:200%; transition:0.5s ease">
+                <ul>
+		    <li id="m-filter-all" class="c-filter" data-cfilter="all"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-services.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">All</span></div></li>
+                    <li id="m-filter-cuisine" class="c-filter" data-cfilter="food"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-cuisine.jpg); background-size:cover;background-repeat:no-repeat"><span class="shop-filter-text">Food</span></div></li>
+                    <li id="m-filter-fashion" class="c-filter" data-cfilter="clothing"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-fashion.jpg); background-size:cover;background-repeat:no-repeat;background-position-y: bottom;"><span class="shop-filter-text">Fashion</span></div></li>
+                    <li id="m-filter-books" class="c-filter" data-cfilter="book"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-books.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">Books</span></div></li>
+                    <li id="m-filter-wholesale" class="c-filter" data-cfilter="wholesale"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-wholesale.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">Groceries</span></div></li>
+                    <!--<li id="m-filter-services"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-services.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">Services</span></div></li>-->
+		    
+		    <li id="m-filter-services3" class="c-filter" data-cfilter="shoes"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/shop5.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">Shoes</span></div></li>
+		    <li id="m-filter-services4" class="c-filter" data-cfilter="accessories"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/shop1.jpg); background-size:cover;background-repeat:no-repeat;background-position-x: center;"><span class="shop-filter-text">Accessories</span></div></li>
+                    <li id="m-filter-fitness" class="c-filter" data-cfilter="fitness"><div style="border-radius:8px;height:110px;width:110px; background-image:linear-gradient(90deg,rgba(0,0,35,0.42) 100%,rgba(0,0,32,1.00) 100%), url(./assets/img_shop/m-filter-fitness.jpg); background-size:cover;background-repeat:no-repeat"><span class="shop-filter-text">Fitness</span></div></li>
+                    
+                </ul>
+           
+        </div>
+        
+       
+        </div>
+    	
+        
+    	
+    </header>
+<!--page loader start -->
+	<div class="loader">
+		<img src="assets/img_loading/loading.gif" alt="loading..."/>
+		
+	</div>	
+
+<!--page loader end -->
+
+<div id="pop2" class="content filter-display-grid" style="">
+    <div class="itemwidth shop-filter">
+	<h4>Sort By</h4>
+	<ul>
+		<li class="shop-filter-li c-sort active" data-csort="all">
+			<i class="icon-sli-home"></i>
+			<span>All</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="bestpicks">
+			<i class="icon-sli-diamond"></i>
+			<span>Best Picks</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="onsale">
+			<i class="icon-sli-tag"></i>
+			<span>On Sale</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="newest">
+			<i class="icon-sli-calendar"></i>
+			<span>Newest</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="highestrated">
+			<i class="icon-sli-star"></i>
+			<span>Highest Rated</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="verified">
+			<i class="icon-sli-check"></i>
+			<span>Verified</span>
+		</li>
+		<!--<li class="shop-filter-li c-sort" data-csort="nearme">
+			<i class="icon-sli-compass"></i>
+			<span>Near Me</span>
+		</li>-->
+	</ul>
+    </div>
+    <div class="itemwidth shop-list market-content content" id="pop3" style="overflow-y:scroll !important;/*background-color: #b9b9b92e;*/margin-top: 195px;height:fit-content !important">
+        <ul class="timelineshops grid-stores" style="margin-top: 6px;">
+           <!--Shops appear here-->
+			
+        </ul>
+    </div>
+</div>
+
+<!-- Right sidenav (cart) start-->
+<div id="editprofilecv" class="editcvnav cart">
+	<div style="padding:0 10px;grid-template-columns: auto 1fr;display: grid;">
+		<i class="icon icon-chevron_left" id="close-cart" style="color:#000;padding:10px;z-index: 1;"></i>
+		<h1 class="title">Your Cart</h1>
+	</div>
+	<div class="cart-content">
+		<!-- Cart item start-->
+		<!--<div class="cart-item no-items" style="border:unset !important">
+			<p class="text-italics" style="color:#b9b9b9b9e2;margin:0 auto; text-align:center">No items in cart</p>
+		</div>-->
+		<!-- Cart item end-->
+		
+		
+	</div>	
+	
+	<div class="cart-footer">
+		<h3>your total : R <span class="cart-total">15000</span></h3>
+		<button class="clear-cart banner-btn badge2">clear cart</button>
+		<button class="clear-cart banner-btn badge2">check out</button>
+	</div>	
+
+
+		
+	</div>
+<!-- Right sidenav (cart) end -->
+
+<!-- Right sidenav (sort) start-->
+<div id="sortTab" class="editcvnav cart shop-filter-mobile">
+	<div style="padding:0 10px;grid-template-columns: auto 1fr;display: grid;">
+		<i class="icon icon-chevron_left" id="close-sort" style="color:#000;padding:10px;z-index: 1;"></i>
+		<h2 class="title">Sort By</h2>
+	</div>
+	
+	<ul>
+		<li class="shop-filter-li c-sort active" data-csort="all">
+			<i class="icon-sli-home"></i>
+			<span>All</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="bestpicks">
+			<i class="icon-sli-diamond"></i>
+			<span>Best Picks</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="onsale">
+			<i class="icon-sli-tag"></i>
+			<span>On Sale</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="newest">
+			<i class="icon-sli-calendar"></i>
+			<span>Newest</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="highestrated">
+			<i class="icon-sli-star"></i>
+			<span>Highest Rated</span>
+		</li>
+		<li class="shop-filter-li c-sort" data-csort="verified">
+			<i class="icon-sli-check"></i>
+			<span>Verified</span>
+		</li>
+		<!--<li class="shop-filter-li c-sort" data-csort="nearme">
+			<i class="icon-sli-compass"></i>
+			<span>Near Me</span>
+		</li>-->
+	</ul>
+
+
+		
+	</div>
+<!-- Right sidenav (sort) end -->
+
+<!-- Modal Background start-->
+<div id="mymodal-bg" class="bg-mymodal viewcart" style="display:none">
+
+<!-- Sliding Modals start-->
+<div id="" class="cm-block" style="z-index:10;">
+
+<div class="slide-block  center round-edges agile_book_form mini-dialog cm-inner-block" id="mini-dialog-filter">
+
+</div>
+
+</div>
+<!-- Sliding Modals end-->
+</div>
+<!-- Modal Background end-->
+
+
+<!--Search Modal Background start-->
+<div id="mysearchmodal-bg" class="bg-mymodal" style="display:none; background-color:transparent !important">
+
+</div>
+<!--Search Modal Background end-->
+
+
+<script type="text/javascript" src="assets/js/cartappmin.js"></script>
+<script type="text/javascript" src="assets/js/customfilter.js"></script>
+<script>
+//initialising start 
+
+filtermodal = document.getElementById('mini-dialog-filter');
+modalbg = document.getElementById('mymodal-bg');
+sboxFilter = "store";
+//initialising end
+
+
+//search stores start
+		
+		$(document).on("click", ".sboxFilter", function() {
+					sboxFilter = ''+$(this).attr('data-sboxFilter')+'';
+					//console.log(sboxFilter)
+					//searchStores(sboxFilter)
+					$('.dialog-btn-filter li').removeClass('active');
+					$(this).addClass('active');
+			
+		})
+		//searchStores(sboxFilter)
+		//function searchStores(sboxfilter) {
+				 
+				//sboxfilter = sboxfilter || "store";
+				$('.sbox').keyup(function() {
+					sboxfilter = sboxFilter
+                			$('.autocomplete').html("")
+						
+					$('#mysearchmodal-bg').show()
+                			searchVal = $(this).val();
+                			
+                			r = "";
+                			start = 0;
+                			if ($(this).val() =="" || $(this).val() ==" ") {
+						
+						$('.autocomplete').html("")
+						$("#mysearchmodal-bg").fadeOut('slow');
+					} else {
+						//console.log(sboxfilter)
+						$.ajax({
+							 
+							 type: "GET",
+							 cache:false,
+							 url: "api/storesearch?query=" +$(this).val()+"&sboxfilter="+sboxfilter+"&start="+start,
+							 processData: false,
+							 contentType:"application/json",
+							 data: '',
+							 success: function(q) {
+								 	var ri = JSON.parse(q)
+									for (var i = 0; i < ri.length; i++) {
+										if (sboxfilter == 'store') {
+                                            						bodystring = ''+ri[i].store_name+'';
+                                            						stringlength = 42;
+                                            						trimmedBodyString = bodystring.length > stringlength ?
+                                            						                    bodystring.substring(0, stringlength -3) +"...":
+                                            						                    bodystring;
+                                           						if (bodystring.length >stringlength){
+                                           						     bodystring = trimmedBodyString;
+		
+				                                            		}
+											if (ri[i].verified == 1) {
+	
+												$('.autocomplete').append( '<li  data-storename="'+ri[i].store_name+'" class="storesearch-li" id="sid'+ri[i].id+'" data-id='+ri[i].id+'><img class="profileimage" src="assets/'+ri[i].store_profimage+'" alt=""/><p class="sboximg" style="">'+ri[i].store_name+'</p><div class="" style="width: fit-content;display: inline-block; margin:0 10px !important;top: -10px;position: relative;"><span class="verified-icon-col"><i class="icon-check_circle text-light-blue"></i></span></div><p class="shop-type searchstore">'+ri[i].store_type+'</p></li>')
+											} else {
+												$('.autocomplete').append( '<li  data-storename="'+ri[i].store_name+'" class="storesearch-li" id="sid'+ri[i].id+'" data-id='+ri[i].id+'><img class="profileimage" src="assets/'+ri[i].store_profimage+'" alt=""/><p class="sboximg" style="">'+ri[i].store_name+'</p><p class="shop-type searchstore">'+ri[i].store_type+'</p></li>')
+											}
+											$('[data-storename]').click(function() {
+												storeName = $(this).attr('data-storename')
+												window.location.href = 'products?storename='+storeName+'';
+					
+											});
+										} else if (sboxfilter == 'product') {
+											bodystring = ''+ri[i].product_title+'';
+                                            						stringlength = 42;
+                                            						trimmedBodyString = bodystring.length > stringlength ?
+                                            						                    bodystring.substring(0, stringlength -3) +"...":
+                                            						                    bodystring;
+                                           						if (bodystring.length >stringlength){
+                                           						     bodystring = trimmedBodyString;
+		
+				                                            		}
+											 
+											$('.autocomplete').append( '<li  data-storename="'+ri[i].store_name+'" class="storesearch-li" id="sid'+ri[i].storeid+'" data-id='+ri[i].productid+'><img class="profileimage" src="assets/'+ri[i].product_image+'" alt=""/><p class="sboximg" style="">'+ri[i].product_title+' - '+ri[i].store_name+'</p><p class="shop-type searchstore">R'+ri[i].price+' ~ <span style="display:inline-block; text-indent:0px !important;">'+ri[i].product_type+'</span></p></li>')
+											
+											$('[data-storename]').click(function() {
+												storeName = $(this).attr('data-storename')
+												window.location.href = 'products?storename='+storeName+'';
+					
+											});
+										}
+											//$('.autocomplete').html(
+												//$('.autocomplete').html() + '<a href="profile?username='+ri[i].username+'#'+ri[i].id+'"><li class="search-li">'+bodystring+'</li></a>')
+                                    					}
+							},
+							error: function(q) {
+
+							}
+						});
+					}
+				});
+
+		//}
+//search stores end
+
+//click actions start
+$('body').on('click', function(sboxEvent) {
+	if (sboxEvent.target != '#pop-auto') {
+		if (document.querySelectorAll('.storesearch-li').length >=1) {
+			$('.autocomplete').html("");
+			
+		}
+	}
+
+})
+
+$('#filter-btn, #filter-btn2').click(function() {
+	
+		modalbg.style.display = "flex";
+		//$("#mymodal-bg").show('slow');
+		//$('#mini-dialog-filter').show();
+		filtermodal.style.opacity = "1";
+		$('#mini-dialog-filter').html('<div class="cm-header-bg w3-padding-8 round-top-edges text-light-blue"><h5 class="padding-navicon">Filter Search</h5><p class="pull-right text-light-blue close-btn-pos" id="close-btn-filter">x</p></div><div style="min-height:100px !important; max-height:175px !important; overflow:hidden !important; -webkit-overflow-scrolling:touch;padding-bottom: 10px;"><ul class="dialog-btn-filter" style=""><li class="sboxFilter" data-sboxFilter="store"><h6 class="" style="font-size: 16px !important; padding-top: 0px;"><i class="icon icon-sli-basket" style="padding:0 15px;color:#e3e3e3"></i><p class="filter_styles">Find Store</p></h6></li><li class="sboxFilter" data-sboxFilter="product"><h6 class="" style="font-size: 16px !important; padding-top: 0px;"><i class="icon icon-sli-present" style="padding:0 15px;color:#e3e3e3"></i><p class="filter_styles">Find Product</p></h6></li></ul></div>');
+		$('[data-sboxFilter='+sboxFilter+']').addClass('active')
+		var effects = 'animated slideInUp';
+	  	var effectsEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
+	  
+	  
+		  $('#mini-dialog-filter').addClass(effects).one(effectsEnd, function(){
+			  $('#mini-dialog-filter').removeClass(effects);
+			  
+		});
+		
+	
+});
+$('#mymodal-bg').click(function(modalEvent) {
+	btnFilter = document.querySelector('.dialog-btn-filter')
+	
+	if (document.getElementById("editprofilecv").style.width == "90%") {
+		document.getElementById("editprofilecv").style.width = "0";
+		$("#mymodal-bg").fadeOut('slow');
+	} else if (document.getElementById("sortTab").style.width == "70%") {
+		document.getElementById("sortTab").style.width = "0";
+		$("#mymodal-bg").fadeOut('slow');
+	} else if (filtermodal.style.opacity == "1") {
+		
+		if (modalEvent.target.parentElement.parentElement.parentElement == btnFilter) {
+			setTimeout(function() {
+				filtermodal.style.opacity = "0";
+				//$('#mini-dialog-filter').fadeOut('slow');
+				$("#mymodal-bg").fadeOut('slow');
+			},1500)
+		} else if (modalEvent.target.parentElement.parentElement == btnFilter)  {
+			setTimeout(function() {
+				filtermodal.style.opacity = "0";
+				//$('#mini-dialog-filter').fadeOut('slow');
+				$("#mymodal-bg").fadeOut('slow');
+			},1500)
+		} else if (modalEvent.target.parentElement == btnFilter)  {
+			setTimeout(function() {
+				filtermodal.style.opacity = "0";
+				//$('#mini-dialog-filter').fadeOut('slow');
+				$("#mymodal-bg").fadeOut('slow');
+			},1500)
+		} else {
+			filtermodal.style.opacity = "0";
+			//$('#mini-dialog-filter').fadeOut('slow');
+			$("#mymodal-bg").fadeOut('slow');
+		}
+	}
+
+});
+$('#close-cart').click(function() {
+	
+		document.getElementById("editprofilecv").style.width = "0";
+		$("#mymodal-bg").fadeOut('slow');
+		
+	
+});
+$('#close-sort').click(function() {
+	
+		document.getElementById("sortTab").style.width = "0";
+		$("#mymodal-bg").fadeOut('slow');
+		
+	
+});
+$('.shop-filter-mobile li').click(function() {
+		setTimeout(function() {
+			document.getElementById("sortTab").style.width = "0";
+			$("#mymodal-bg").fadeOut('slow');
+		},1500)
+})
+$('#mysearchmodal-bg').click(function() {
+	
+		
+		$('.autocomplete').html('');
+		$("#mysearchmodal-bg").fadeOut('slow');
+		
+		
+	
+});
+$('#showsearchbox').on('click', function(){
+		document.getElementById('shopsearchbox').style.top = "-3px";
+		document.getElementById('shopsearchbox').style.opacity = "1";
+		document.getElementById('showsearchbox').style.opacity = "0";
+});
+//click actions end
+
+
+	<!--navbar scroll start
+		var lastScrollTop = 0;
+		navbar = document.getElementById("navbar");
+		navbar2nd = document.getElementById("navbar2nd");
+		filterBar = document.querySelector(".shop-filter");
+		pop2 =  document.getElementById("pop2");
+		pop2.addEventListener("scroll", function(){
+			var scrollTop = $("#pop2").scrollTop();
+			if (scrollTop > lastScrollTop){
+			navbar.style.top="-61px";
+			navbar2nd.style.top="60px";
+			filterBar.style.paddingTop = "140px";
+			navshould = "move";
+			} else {
+			navbar.style.top="0";
+			navbar2nd.style.top="60px";
+			filterBar.style.paddingTop = "200px";	
+			}
+			lastScrollTop = scrollTop;
+		})
+	<!--navbar scroll end
+	//Load stores start
+	function loadStores(sort_Param, filter_Param) {
+		sort_Param = sort_Param || 'all'
+		filter_Param = filter_Param || 'all'
+		$.ajax({
+						
+			type:"GET",
+			cache:false,
+			url:"api/loadstores?sort="+sort_Param+"&filter="+filter_Param,
+			processData:false,
+			contentType:"application/json",
+			data: '',
+			success: function(r) {
+				var stores = JSON.parse(r)
+				
+				$.each(stores, function(index) {
+					if (stores.length <=2) {
+						document.querySelector('.timelineshops').style.setProperty("display", "flex", "important");
+						document.querySelector('.timelineshops').style.setProperty("justify-content", "flex-start", "important");
+					} else {
+						document.querySelector('.timelineshops').style.removeProperty("display");
+						document.querySelector('.timelineshops').style.removeProperty("justify-content");
+					}
+					storename = ''+stores[index].StoreName+'';
+					if (stores[index].Verified == 1) {
+						$('.timelineshops').html(
+						$('.timelineshops').html() +'<li class="shop-view-cell storemargin" data-storename="'+stores[index].StoreName+'" onClick="" data-shoptype="'+stores[index].StoreId+'"><div class="shop-thumbnailimg"><img src="assets/'+stores[index].StoreImg+'" class=""/><span class="business_star" id="business_list'+stores[index].OwnerId+'"></span></div><div class="shop-info"><a class=""><img src="assets/'+stores[index].ProfileImg+'" class="shop-profileimg"></a><div class="shop-name"><h4 class="minwidth70_12px" style="display:inline-flex">'+stores[index].StoreName+'</h4><div class="" style="width: fit-content;display: inline-flex; left: 10px;position: relative;"><span class="verified-icon-col"><i class="icon-check_circle text-light-blue"></i></span></div><div><span class="shop-description"><p class="shop-type">'+stores[index].StoreType+'</p></span></div></div></div></li>')
+						
+					} else {
+						$('.timelineshops').html(
+						$('.timelineshops').html() +'<li class="shop-view-cell storemargin" data-storename="'+stores[index].StoreName+'" onClick="" data-shoptype="'+stores[index].StoreId+'"><div class="shop-thumbnailimg"><img src="assets/'+stores[index].StoreImg+'" class=""/><span class="business_star" id="business_list'+stores[index].OwnerId+'"></span></div><div class="shop-info"><a class=""><img src="assets/'+stores[index].ProfileImg+'" class="shop-profileimg"></a><div class="shop-name"><h4 class="minwidth70_12px">'+stores[index].StoreName+'</h4><div><span class="shop-description"><p class="shop-type">'+stores[index].StoreType+'</p></span></div></div></div></li>')
+					}
+					//gotoProduct($(this).attr("data-storename"))
+					
+					load_business_data(stores[index].OwnerId);
+				});
+				$('[data-storename]').click(function() {
+					storeName = $(this).attr('data-storename')
+					window.location.href = 'products?storename='+storeName+'';
+					
+				})
+
+			},
+			error: function(r) {
+			
+			}
+		});
+
+	} 
+	sortParams = $.urlParam('sort');
+	filterParams = $.urlParam('filter');
+	loadStores(sortParams, filterParams)	
+						
+	//Load stores end
+	
+	//star rating system start
+	//$(document).ready(function() {
+		
+		userid = 3;
+		
+		//load_business_data(userid);
+		function load_business_data(userId) {
+			myvariable = userId;
+			$.ajax({
+				url: "api/fetch_rating",
+				cache:false,
+				method: "POST",
+				data: '{"userid": "'+userId+'"}',
+				success:function(data) {
+					$('#business_list'+userId+'').html(data);
+					
+				}
+			
+
+			});
+		}
+		$(document).on('click', '#see-full-resume', function(){
+			load_business_data(userid);
+		})
+		$(document).on('mouseenter', '.rating', function() {
+			var index = $(this).data('index');
+			var business_id = $(this).data('business_id');
+			remove_background(business_id);
+			for(var count = 1; count <=index; count++) {
+				var solidstar = 'animated bounceIn fas fa-star fa-2x';
+				var emptystar = 'animated bounceOut far fa-star fa-2x';
+				$('#'+business_id+'-'+count).removeClass(emptystar);
+				$('#'+business_id+'-'+count).addClass(solidstar);
+			}
+		});
+		function remove_background(business_id) {
+			for(var count=1; count <=5; count++) {
+				var solidstar = 'animated bounceOut fas fa-star fa-2x';
+				var emptystar = 'animated bounceIn far fa-star fa-2x';
+				$('#'+business_id+'-'+count).removeClass(solidstar);
+				$('#'+business_id+'-'+count).addClass(emptystar);
+			}
+		}
+		$(document).on('click', '.rating', function(){
+			var index = $(this).data('index');
+			var business_id = $(this).data('business_id');
+			userId = 3;
+			var profileuserid =userId;
+			var profileusername = "userName";
+			
+			profileusername = String(profileusername);
+			$.ajax({
+				url:"api/insert_rating",
+				cache:false,
+				method:"POST",
+				data:'{"userid": "'+profileuserid+'","index":"'+index+'","business_id": "'+business_id+'"}',
+				success:function(data) {
+					if(data == 'done') {
+						load_business_data(userid);
+						ratingvar = "You have rated "+profileusername+": "+index+" out of 5 stars";
+						//console.log("You have rated "+index+" out of 5 stars");
+						alertFunction("success", ratingvar);
+					} else {
+						ratingvar = "Something went wrong, please try again";
+						//console.log("System error");
+						alertFunction("warning", ratingvar);
+					}
+				}
+			});
+
+			
+		});
+		
+		//})
+		
+		//star rating system end
+//all files, folders and subfolders in this repository excluding the popular libaries are original work built, developed and designed, by the author, and developer Kamogelo Molefe copyRight view and read only.
+//Commercial use not permitted reposession not permitted
+</script>
+</body>
+</html>
