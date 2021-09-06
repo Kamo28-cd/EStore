@@ -1,9 +1,9 @@
 <?php 
 require_once("DB.php");
 
-//$db = new DB("127.0.0.1", "studenthub", "root", "Epsilion28");
-$db = new DB('127.0.0.1', 'buble', 'root', '');
-//$db = new DB("localhost:3306", "bublecoz_bublehub", "bublecoz_Kamo", "Epsilion28.");
+
+$db = new DB('127.0.0.1', 'dbname', 'username', 'password');
+
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	 if ($_GET['url'] == "musers") {
